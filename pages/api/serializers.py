@@ -1,0 +1,28 @@
+from rest_framework import serializers
+from rest_framework.reverse import reverse
+
+from . import fields, mixins, models
+from pages.utils import build_url
+
+
+class PageSerializer(serializers.HyperlinkedModelSerializer):
+    name = serializers.CharField()
+    regions = serializers.Field(source='rendered_regions')
+
+    class Meta:
+        fields = ('id', 'url', 'name', 'slug', 'regions')
+        model = models.Page
+        view_name = 'pages:page-detail'
+
+
+class PageGroupSerializer(mixins.LinksMixin, serializers.HyperlinkedModelSerializer):
+    url = fields.AbsoluteURLIdentityField()
+    pages = serializers.SerializerMethodField('get_pages_link')
+
+    links_fields = ['pages']
+
+    class Meta:
+        model = models.PageGroup
+
+    def get_pages_link(self, obj):
+        return build_url(reverse('pages:page-list'), {'slug': obj.slug})

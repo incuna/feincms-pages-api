@@ -1,0 +1,12 @@
+language: python
+python:
+  - 3.3
+  - 2.7
+script: make test
+notifications:
+  email: false
+env:
+  - DATABASE_URL='postgres://postgres@localhost/pages'
+install:
+  - psql -c 'CREATE DATABASE pages' -U postgres
+  - pip install -r test_requirements

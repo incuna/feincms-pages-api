@@ -1,0 +1,7 @@
+-e .
+django==1.6
+dj-database-url==0.2.2
+django-user-management==0.0.7
+djangorestframework==2.3.12
+factory-boy==2.3.1
+psycopg2==2.5.2
