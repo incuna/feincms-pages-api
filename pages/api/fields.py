@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 
-class AbsoluteURLMixin:
+class AbsoluteURLMixin(object):
     """Use get_absolute_url to get the field's api endpoint."""
 
     def __init__(self, *args, **kwargs):
