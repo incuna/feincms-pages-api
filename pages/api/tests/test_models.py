@@ -12,7 +12,7 @@ class TestPageModel(TestCase):
             'id',
             'name',
             'slug',
-            'pagegroupitem',
+            'groupitem',
             'richtextcontent_set',
         }
 
@@ -35,15 +35,15 @@ class TestPageModel(TestCase):
         self.assertEqual(str(page), page.name)
 
 
-class TestPageGroupModel(TestCase):
+class TestGroupModel(TestCase):
     def test_fields(self):
         expected = {
             'id',
             'slug',
-            'pagegroupitem',
+            'groupitem',
         }
 
-        fields = models.PageGroup._meta.get_all_field_names()
+        fields = models.Group._meta.get_all_field_names()
 
         # assertItemsEqual has been renamed assertCountEqual in python version 3
         try:
@@ -54,24 +54,24 @@ class TestPageGroupModel(TestCase):
             self.assertItemsEqual(fields, expected)
 
     def test_str(self):
-        page_group = factories.PageGroupFactory.build()
-        self.assertEqual(str(page_group), page_group.slug)
+        group = factories.GroupFactory.build()
+        self.assertEqual(str(group), group.slug)
 
     def test_get_absolute_url(self):
-        page_group = factories.PageGroupFactory.create()
+        group = factories.GroupFactory.create()
         request = MagicMock()
 
         with patch('pages.api.models.reverse') as patched_reverse:
-            page_group.get_absolute_url(request)
+            group.get_absolute_url(request)
 
         patched_reverse.assert_called_once_with(
-            'pages:pagegroup-detail',
-            kwargs={'slug': page_group.slug},
+            'pages:group-detail',
+            kwargs={'slug': group.slug},
             request=request,
         )
 
 
-class TestPageGroupItem(TestCase):
+class TestGroupItem(TestCase):
     def test_fields(self):
         expected = {
             'id',
@@ -80,7 +80,7 @@ class TestPageGroupItem(TestCase):
             'sort_order',
         }
 
-        fields = models.PageGroupItem._meta.get_all_field_names()
+        fields = models.GroupItem._meta.get_all_field_names()
 
         # assertItemsEqual has been renamed assertCountEqual in python version 3
         try:

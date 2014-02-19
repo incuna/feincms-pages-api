@@ -14,9 +14,9 @@ class PageViewSet(viewsets.ReadOnlyModelViewSet):
         if slug is None:
             return queryset
 
-        return queryset.filter(pagegroupitem__group__slug=slug)
+        return queryset.filter(groupitem__group__slug=slug)
 
 
-class PageGroupView(generics.RetrieveAPIView):
-    model = models.PageGroup
-    serializer_class = serializers.PageGroupSerializer
+class GroupView(generics.RetrieveAPIView):
+    model = models.Group
+    serializer_class = serializers.GroupSerializer

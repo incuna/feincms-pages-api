@@ -16,7 +16,7 @@ class TestURLs(TestCase):
         view_name = resolve(url).func.__name__
         self.assertEqual(view_name, views.PageViewSet.__name__)
 
-    def test_pagegroup_url(self):
-        url = reverse('pages:pagegroup-detail', kwargs={'slug': 'slug'})
+    def test_group_url(self):
+        url = reverse('pages:group-detail', kwargs={'slug': 'slug'})
         view_name = resolve(url).func.__name__
-        self.assertEqual(view_name, views.PageGroupView.__name__)
+        self.assertEqual(view_name, views.GroupView.__name__)

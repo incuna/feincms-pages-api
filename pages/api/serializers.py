@@ -15,14 +15,14 @@ class PageSerializer(serializers.HyperlinkedModelSerializer):
         view_name = 'pages:page-detail'
 
 
-class PageGroupSerializer(mixins.LinksMixin, serializers.HyperlinkedModelSerializer):
+class GroupSerializer(mixins.LinksMixin, serializers.HyperlinkedModelSerializer):
     url = fields.AbsoluteURLIdentityField()
     pages = serializers.SerializerMethodField('get_pages_link')
 
     links_fields = ['pages']
 
     class Meta:
-        model = models.PageGroup
+        model = models.Group
 
     def get_pages_link(self, obj):
         request = self.context.get('request', None)

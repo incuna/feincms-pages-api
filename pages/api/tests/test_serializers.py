@@ -25,12 +25,12 @@ class PageSerializerTest(TestCase):
         self.assertEqual(serializer.data, self.expected_data(page))
 
 
-class PageGroupTest(TestCase):
-    url_path = 'pages.api.models.PageGroup.get_absolute_url'
+class GroupTest(TestCase):
+    url_path = 'pages.api.models.Group.get_absolute_url'
     mocked_url = '/mocked_url'
 
-    def expected_data(self, page_group):
-        slug = page_group.slug
+    def expected_data(self, group):
+        slug = group.slug
         return {
             'url': self.mocked_url,
             'slug': slug,
@@ -40,9 +40,9 @@ class PageGroupTest(TestCase):
         }
 
     @patch(url_path)
-    def test_serialize(self, page_group_url):
-        page_group_url.return_value = self.mocked_url
-        page_group = factories.PageGroupFactory.create()
+    def test_serialize(self, group_url):
+        group_url.return_value = self.mocked_url
+        group = factories.GroupFactory.create()
 
-        serializer = serializers.PageGroupSerializer(page_group)
-        self.assertEqual(serializer.data, self.expected_data(page_group))
+        serializer = serializers.GroupSerializer(group)
+        self.assertEqual(serializer.data, self.expected_data(group))
