@@ -1,5 +1,4 @@
-# feincms-pages-api [![Build Status](https://travis-ci.org/incuna/feincms-pages-api.png?branch=merge-version)](https://travis-ci.org/incuna/feincms-pages-api)
-
+# feincms-pages-api [![Build Status](https://travis-ci.org/incuna/feincms-pages-api.png?branch=master)](https://travis-ci.org/incuna/feincms-pages-api)
 Custom [FeinCMS](https://github.com/feincms/feincms) pages with navigations exposed through the [Django Rest framework](https://github.com/tomchristie/django-rest-framework/tree/master).
 
 ##Installation
