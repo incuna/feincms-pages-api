@@ -21,7 +21,7 @@ class Page(Base):
         return self.name
 
 
-class PageGroup(models.Model):
+class Group(models.Model):
     slug = models.SlugField(_('slug'), max_length=255, unique=True)
 
     def __str__(self):
@@ -29,9 +29,9 @@ class PageGroup(models.Model):
 
     def get_absolute_url(self, request=None):
         return reverse(
-            'pages:pagegroup-detail', kwargs={'slug': self.slug}, request=request)
+            'pages:group-detail', kwargs={'slug': self.slug}, request=request)
 
 
-class PageGroupItem(Orderable):
+class GroupItem(Orderable):
     page = models.ForeignKey(Page)
-    group = models.ForeignKey(PageGroup)
+    group = models.ForeignKey(Group)

@@ -50,13 +50,13 @@ class TestPageViewSet(APIRequestTestCase):
         self.assertEqual(response.data, expected)
 
     def test_filtered_list(self):
-        """Test filtering by PageGroup."""
+        """Test filtering by Group."""
         page, other_page = factories.PageFactory.create_batch(2)
-        page_group = factories.PageGroupFactory.create()
-        factories.PageGroupItemFactory.create(page=page, group=page_group)
+        group = factories.GroupFactory.create()
+        factories.GroupItemFactory.create(page=page, group=group)
 
         request = self.create_request()
-        request.QUERY_PARAMS = {'slug': page_group.slug}
+        request.QUERY_PARAMS = {'slug': group.slug}
         view = self.view_class()
         view.request = request
         queryset = view.get_queryset()
@@ -65,14 +65,14 @@ class TestPageViewSet(APIRequestTestCase):
         self.assertNotIn(other_page, queryset)
 
 
-class TestPageGroupView(APIRequestTestCase):
-    view_class = views.PageGroupView
+class TestGroupView(APIRequestTestCase):
+    view_class = views.GroupView
 
-    url_path = 'pages.api.models.PageGroup.get_absolute_url'
+    url_path = 'pages.api.models.Group.get_absolute_url'
     mocked_url = '/mocked_url'
 
-    def get_expected(self, page_group):
-        slug = page_group.slug
+    def get_expected(self, group):
+        slug = group.slug
         return {
             'url': self.mocked_url,
             'slug': slug,
@@ -82,14 +82,14 @@ class TestPageGroupView(APIRequestTestCase):
         }
 
     @patch(url_path)
-    def test_get(self, pagegroup_url):
-        pagegroup_url.return_value = self.mocked_url
-        page_group = factories.PageGroupFactory.create()
+    def test_get(self, group_url):
+        group_url.return_value = self.mocked_url
+        group = factories.GroupFactory.create()
 
         request = self.create_request()
         view = self.view_class.as_view()
-        response = view(request, slug=page_group.slug)
+        response = view(request, slug=group.slug)
         self.assertEqual(response.status_code, 200)
 
-        expected = self.get_expected(page_group)
+        expected = self.get_expected(group)
         self.assertEqual(response.data, expected)
