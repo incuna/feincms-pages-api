@@ -1,8 +1,7 @@
 from django.conf.urls import include, patterns, url
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = patterns('',
     url(r'', include('pages.urls.page')),
     url(r'', include('pages.urls.group')),
 )

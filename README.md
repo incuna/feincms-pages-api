@@ -19,7 +19,7 @@ In your `urls.py`
 
     urlpatterns = patterns(''
         ...
-        url('', include('pages.urls')),
+        url('', include('pages.urls'), namespace='pages'),
         ...
     )
 
