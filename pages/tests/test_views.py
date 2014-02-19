@@ -68,7 +68,7 @@ class TestPageViewSet(APIRequestTestCase):
 class TestGroupView(APIRequestTestCase):
     view_class = views.GroupView
 
-    url_path = 'pages.api.models.Group.get_absolute_url'
+    url_path = 'pages.models.Group.get_absolute_url'
     mocked_url = '/mocked_url'
 
     def get_expected(self, group):

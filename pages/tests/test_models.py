@@ -61,7 +61,7 @@ class TestGroupModel(TestCase):
         group = factories.GroupFactory.create()
         request = MagicMock()
 
-        with patch('pages.api.models.reverse') as patched_reverse:
+        with patch('pages.models.reverse') as patched_reverse:
             group.get_absolute_url(request)
 
         patched_reverse.assert_called_once_with(

@@ -12,7 +12,7 @@ settings.configure(
         'default': dj_database_url.config(default='postgres://localhost/pages'),
     },
     INSTALLED_APPS=(
-        'pages.api',
+        'pages',
         'pages.tests',  # This adds the test User model.
 
         # 3rd party app
@@ -29,7 +29,7 @@ settings.configure(
     PASSWORD_HASHERS = ('django.contrib.auth.hashers.MD5PasswordHasher',),
     SITE_ID = 1,
     AUTH_USER_MODEL='tests.User',
-    ROOT_URLCONF='pages.api.tests.urls',
+    ROOT_URLCONF='pages.tests.urls',
 )
 
 

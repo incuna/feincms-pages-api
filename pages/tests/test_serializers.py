@@ -26,7 +26,7 @@ class PageSerializerTest(TestCase):
 
 
 class GroupTest(TestCase):
-    url_path = 'pages.api.models.Group.get_absolute_url'
+    url_path = 'pages.models.Group.get_absolute_url'
     mocked_url = '/mocked_url'
 
     def expected_data(self, group):
