@@ -1,4 +1,4 @@
-from unittest.mock import patch, MagicMock
+from mock import patch, MagicMock
 
 from django.test import TestCase
 
@@ -8,11 +8,23 @@ from . import factories
 
 class TestPageModel(TestCase):
     def test_fields(self):
+        expected = {
+            'id',
+            'name',
+            'slug',
+            'pagegroupitem',
+            'richtextcontent_set'
+        }
+
         fields = models.Page._meta.get_all_field_names()
-        self.assertCountEqual(
-            ('id', 'name', 'slug', 'pagegroupitem', 'richtextcontent_set'),
-            fields,
-        )
+
+        # assertItemsEqual has been renamed assertCountEqual in python version 3
+        try:
+            # python 3
+            self.assertCountEqual(fields, expected)
+        except AttributeError:
+            # python 2.7
+            self.assertItemsEqual(fields, expected)
 
     def test_slug_unique(self):
         slug_field = models.Page._meta.get_field_by_name('slug')[0]
@@ -25,8 +37,21 @@ class TestPageModel(TestCase):
 
 class TestPageGroupModel(TestCase):
     def test_fields(self):
+        expected = {
+            'id',
+            'slug',
+            'pagegroupitem'
+        }
+
         fields = models.PageGroup._meta.get_all_field_names()
-        self.assertCountEqual(('id', 'slug', 'pagegroupitem'), fields)
+
+        # assertItemsEqual has been renamed assertCountEqual in python version 3
+        try:
+            # python 3
+            self.assertCountEqual(fields, expected)
+        except AttributeError:
+            # python 2.7
+            self.assertItemsEqual(fields, expected)
 
     def test_str(self):
         page_group = factories.PageGroupFactory.build()
@@ -48,5 +73,19 @@ class TestPageGroupModel(TestCase):
 
 class TestPageGroupItem(TestCase):
     def test_fields(self):
+        expected = {
+            'id',
+            'page',
+            'group',
+            'sort_order'
+        }
+
         fields = models.PageGroupItem._meta.get_all_field_names()
-        self.assertCountEqual(('id', 'page', 'group', 'sort_order'), fields)
+
+        # assertItemsEqual has been renamed assertCountEqual in python version 3
+        try:
+            # python 3
+            self.assertCountEqual(fields, expected)
+        except AttributeError:
+            # python 2.7
+            self.assertItemsEqual(fields, expected)

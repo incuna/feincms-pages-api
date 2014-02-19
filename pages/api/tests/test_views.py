@@ -1,4 +1,4 @@
-from unittest.mock import patch
+from mock import patch
 
 from rest_framework.reverse import reverse
 
@@ -9,21 +9,20 @@ from pages.tests.utils import TEST_SERVER
 from pages.utils import build_url
 
 
-def get_expected(page):
-    return {
-        'id': page.pk,
-        'url': TEST_SERVER + page.get_absolute_url(),
-        'name': page.name,
-        'slug': page.slug,
-        'regions': {
-            'abstract': '',
-            'body': 'Wow!',
-        },
-    }
-
-
 class TestPageViewSet(APIRequestTestCase):
     view_class = views.PageViewSet
+
+    def get_expected(self, page):
+        return {
+            'id': page.pk,
+            'url': TEST_SERVER + page.get_absolute_url(),
+            'name': page.name,
+            'slug': page.slug,
+            'regions': {
+                'abstract': '',
+                'body': 'Wow!',
+            },
+        }
 
     def test_get_detail(self):
         """Test GET Page detail."""
@@ -35,7 +34,7 @@ class TestPageViewSet(APIRequestTestCase):
         response = view(request, pk=page.pk)
         self.assertEqual(response.status_code, 200)
 
-        expected = get_expected(page)
+        expected = self.get_expected(page)
         self.assertEqual(response.data, expected)
 
     def test_get_list(self):
@@ -47,7 +46,7 @@ class TestPageViewSet(APIRequestTestCase):
         response = self.view_class.as_view({'get': 'list'})(request)
         self.assertEqual(response.status_code, 200)
 
-        expected = [get_expected(page)]
+        expected = [self.get_expected(page)]
         self.assertEqual(response.data, expected)
 
     def test_filtered_list(self):
