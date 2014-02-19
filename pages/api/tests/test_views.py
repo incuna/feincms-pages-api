@@ -4,7 +4,7 @@ from rest_framework.reverse import reverse
 
 from .. import views
 from . import factories
-from incuna_test_utils.testcases.api_request import APIRequestTestCase
+from user_management.models.tests.utils import APIRequestTestCase
 from pages.tests.utils import TEST_SERVER
 from pages.utils import build_url
 
