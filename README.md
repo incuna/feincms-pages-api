@@ -17,12 +17,18 @@ In `settings.py`
 
 In your `urls.py`
 
-    urlpatterns = patterns('',
-        url(r'', include(
-            patterns('',
-                url(r'', include('pages.urls.page')),
-                url(r'', include('pages.urls.group')),
-            ),
-            namespace='pages',
-        ))
+    urlpatterns = patterns(''
+        ...
+        url('', include('pages.urls')),
+        ...
+    )
+
+
+Or if you need more controls over what you're importing
+
+
+    urlpatterns = patterns(
+        '',
+        url(r'', include('pages.urls.page', namespace='pages')),
+        url(r'', include('pages.urls.group', namespace='pages')),
     )
