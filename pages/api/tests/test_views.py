@@ -78,7 +78,7 @@ class TestPageGroupView(APIRequestTestCase):
             'url': self.mocked_url,
             'slug': slug,
             'links': {
-                'pages': build_url(reverse('pages:page-list'), {'slug': slug}),
+                'pages': TEST_SERVER + build_url(reverse('pages:page-list'), {'slug': slug}),
             },
         }
 
