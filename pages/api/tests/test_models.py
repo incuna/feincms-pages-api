@@ -13,7 +13,7 @@ class TestPageModel(TestCase):
             'name',
             'slug',
             'pagegroupitem',
-            'richtextcontent_set'
+            'richtextcontent_set',
         }
 
         fields = models.Page._meta.get_all_field_names()
@@ -40,7 +40,7 @@ class TestPageGroupModel(TestCase):
         expected = {
             'id',
             'slug',
-            'pagegroupitem'
+            'pagegroupitem',
         }
 
         fields = models.PageGroup._meta.get_all_field_names()
@@ -77,7 +77,7 @@ class TestPageGroupItem(TestCase):
             'id',
             'page',
             'group',
-            'sort_order'
+            'sort_order',
         }
 
         fields = models.PageGroupItem._meta.get_all_field_names()
