@@ -10,7 +10,7 @@ In `settings.py`
 
     INSTALLED_APPS = (
         ...
-        'pages.api',
+        'pages',
         ...
     ),
 
@@ -20,8 +20,8 @@ In your `urls.py`
     urlpatterns = patterns('',
         url(r'', include(
             patterns('',
-                url(r'', include('pages.api.urls.page')),
-                url(r'', include('pages.api.urls.group')),
+                url(r'', include('pages.urls.page')),
+                url(r'', include('pages.urls.group')),
             ),
             namespace='pages',
         ))
