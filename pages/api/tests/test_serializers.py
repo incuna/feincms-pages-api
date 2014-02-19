@@ -1,4 +1,4 @@
-from unittest.mock import patch
+from mock import patch
 
 from django.test import TestCase
 from rest_framework.reverse import reverse
