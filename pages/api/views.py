@@ -8,7 +8,7 @@ class PageViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = serializers.PageSerializer
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super(PageViewSet, self).get_queryset()
         slug = self.request.QUERY_PARAMS.get('slug')
 
         if slug is None:
