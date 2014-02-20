@@ -1,7 +1,7 @@
 from django.contrib import admin
 from feincms.admin.item_editor import ItemEditor
 from feincms.extensions import ExtensionModelAdmin
-from orderable.admin import OrderableAdmin, OrderableTabularInline
+from orderable.admin import OrderableTabularInline
 
 from . import models
 
@@ -29,10 +29,5 @@ class GroupAdmin(admin.ModelAdmin):
     inlines = [GroupItemInline]
 
 
-class GroupItemAdmin(OrderableAdmin):
-    list_display = ('page', 'group', 'sort_order_display')
-
-
 admin.site.register(models.Page, PageAdmin)
 admin.site.register(models.Group, GroupAdmin)
-admin.site.register(models.GroupItem, GroupItemAdmin)
