@@ -8,7 +8,9 @@ from . import models
 
 class PageAdmin(ItemEditor, ExtensionModelAdmin):
     fieldsets = [
-        (None, {'fields': ['name', 'slug']}),
+        (None, {
+            'fields': ['name', 'slug'],
+        }),
         # <-- extensions appear here, see fieldset_insertion_index.
     ]
     fieldset_insertion_index = 1
