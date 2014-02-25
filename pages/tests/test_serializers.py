@@ -35,7 +35,7 @@ class GroupTest(TestCase):
             'url': self.mocked_url,
             'slug': slug,
             'links': {
-                'pages': build_url(reverse('pages:page-list'), {'slug': slug}),
+                'pages': build_url(reverse('pages:page-list'), {'group': slug}),
             },
         }
 

@@ -9,12 +9,12 @@ class PageViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         queryset = super(PageViewSet, self).get_queryset()
-        slug = self.request.QUERY_PARAMS.get('slug')
+        group_slug = self.request.QUERY_PARAMS.get('group')
 
-        if slug is None:
+        if group_slug is None:
             return queryset
 
-        return queryset.filter(groupitem__group__slug=slug)
+        return queryset.filter(groupitem__group__slug=group_slug)
 
 
 class GroupView(generics.RetrieveAPIView):

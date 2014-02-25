@@ -56,7 +56,7 @@ class TestPageViewSet(APIRequestTestCase):
         factories.GroupItemFactory.create(page=page, group=group)
 
         request = self.create_request()
-        request.QUERY_PARAMS = {'slug': group.slug}
+        request.QUERY_PARAMS = {'group': group.slug}
         view = self.view_class()
         view.request = request
         queryset = view.get_queryset()
@@ -79,7 +79,7 @@ class TestGroupView(APIRequestTestCase):
             'links': {
                 'pages': build_url(
                     reverse('pages:page-list', request=request),
-                    {'slug': slug},
+                    {'group': slug},
                 ),
             },
         }

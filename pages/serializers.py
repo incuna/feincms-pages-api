@@ -27,5 +27,5 @@ class GroupSerializer(mixins.LinksMixin, serializers.HyperlinkedModelSerializer)
     def get_pages_link(self, obj):
         return build_url(
             reverse('pages:page-list', request=self.context.get('request')),
-            {'slug': obj.slug},
+            {'group': obj.slug},
         )
