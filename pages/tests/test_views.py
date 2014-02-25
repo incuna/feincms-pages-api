@@ -71,13 +71,16 @@ class TestGroupView(APIRequestTestCase):
     url_path = 'pages.models.Group.get_absolute_url'
     mocked_url = '/mocked_url'
 
-    def get_expected(self, group):
+    def get_expected(self, group, request):
         slug = group.slug
         return {
             'url': self.mocked_url,
             'slug': slug,
             'links': {
-                'pages': TEST_SERVER + build_url(reverse('pages:page-list'), {'slug': slug}),
+                'pages': build_url(
+                    reverse('pages:page-list', request=request),
+                    {'slug': slug},
+                ),
             },
         }
 
@@ -91,5 +94,5 @@ class TestGroupView(APIRequestTestCase):
         response = view(request, slug=group.slug)
         self.assertEqual(response.status_code, 200)
 
-        expected = self.get_expected(group)
+        expected = self.get_expected(group, request)
         self.assertEqual(response.data, expected)
