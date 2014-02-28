@@ -64,6 +64,19 @@ class TestPageViewSet(APIRequestTestCase):
         self.assertIn(page, queryset)
         self.assertNotIn(other_page, queryset)
 
+    def test_get_detail_anonymous(self):
+        """Test GET Page detail unauthenticated."""
+        page = factories.PageFactory.create()
+        page.richtextcontent_set.create(region='body', text='Wow!')
+
+        request = self.create_request(auth=False)
+        view = self.view_class.as_view({'get': 'retrieve'})
+        response = view(request, pk=page.pk)
+        self.assertEqual(response.status_code, 200)
+
+        expected = self.get_expected(page)
+        self.assertEqual(response.data, expected)
+
 
 class TestGroupView(APIRequestTestCase):
     view_class = views.GroupView

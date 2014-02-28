@@ -1,4 +1,5 @@
 from rest_framework import generics, viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from . import models, serializers
 
@@ -6,6 +7,7 @@ from . import models, serializers
 class PageViewSet(viewsets.ReadOnlyModelViewSet):
     model = models.Page
     serializer_class = serializers.PageSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         queryset = super(PageViewSet, self).get_queryset()
