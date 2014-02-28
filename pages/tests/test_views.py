@@ -31,7 +31,7 @@ class TestPageViewSet(APIRequestTestCase):
 
         request = self.create_request()
         view = self.view_class.as_view({'get': 'retrieve'})
-        response = view(request, pk=page.pk)
+        response = view(request, slug=page.slug)
         self.assertEqual(response.status_code, 200)
 
         expected = self.get_expected(page)
@@ -71,7 +71,7 @@ class TestPageViewSet(APIRequestTestCase):
 
         request = self.create_request(auth=False)
         view = self.view_class.as_view({'get': 'retrieve'})
-        response = view(request, pk=page.pk)
+        response = view(request, slug=page.slug)
         self.assertEqual(response.status_code, 200)
 
         expected = self.get_expected(page)

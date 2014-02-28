@@ -5,6 +5,7 @@ from . import models, serializers
 
 
 class PageViewSet(viewsets.ReadOnlyModelViewSet):
+    lookup_field = 'slug'
     model = models.Page
     serializer_class = serializers.PageSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]

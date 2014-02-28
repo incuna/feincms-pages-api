@@ -15,7 +15,8 @@ class Page(Base):
 
         If a request is passed the url will include the domain and port.
         """
-        return reverse('pages:page-detail', kwargs={'pk': self.pk}, request=request)
+        return reverse(
+            'pages:page-detail', kwargs={'slug': self.slug}, request=request)
 
     def __str__(self):
         return self.name
