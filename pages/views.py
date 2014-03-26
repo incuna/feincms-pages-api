@@ -21,5 +21,6 @@ class PageViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class GroupView(generics.RetrieveAPIView):
+    lookup_field = 'slug'
     model = models.Group
     serializer_class = serializers.GroupSerializer
