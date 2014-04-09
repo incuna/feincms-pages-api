@@ -1,10 +1,10 @@
 from mock import patch
 
 from rest_framework.reverse import reverse
+from user_management.models.tests.utils import APIRequestTestCase
 
 from .. import views
 from . import factories
-from user_management.models.tests.utils import APIRequestTestCase
 from pages.tests.utils import TEST_SERVER
 from pages.utils import build_url
 
@@ -31,7 +31,7 @@ class TestPageViewSet(APIRequestTestCase):
 
         request = self.create_request()
         view = self.view_class.as_view({'get': 'retrieve'})
-        response = view(request, pk=page.pk)
+        response = view(request, slug=page.slug)
         self.assertEqual(response.status_code, 200)
 
         expected = self.get_expected(page)
@@ -56,13 +56,26 @@ class TestPageViewSet(APIRequestTestCase):
         factories.GroupItemFactory.create(page=page, group=group)
 
         request = self.create_request()
-        request.QUERY_PARAMS = {'slug': group.slug}
+        request.QUERY_PARAMS = {'group': group.slug}
         view = self.view_class()
         view.request = request
         queryset = view.get_queryset()
 
         self.assertIn(page, queryset)
         self.assertNotIn(other_page, queryset)
+
+    def test_get_detail_anonymous(self):
+        """Test GET Page detail unauthenticated."""
+        page = factories.PageFactory.create()
+        page.richtextcontent_set.create(region='body', text='Wow!')
+
+        request = self.create_request(auth=False)
+        view = self.view_class.as_view({'get': 'retrieve'})
+        response = view(request, slug=page.slug)
+        self.assertEqual(response.status_code, 200)
+
+        expected = self.get_expected(page)
+        self.assertEqual(response.data, expected)
 
 
 class TestGroupView(APIRequestTestCase):
@@ -71,13 +84,16 @@ class TestGroupView(APIRequestTestCase):
     url_path = 'pages.models.Group.get_absolute_url'
     mocked_url = '/mocked_url'
 
-    def get_expected(self, group):
+    def get_expected(self, group, request):
         slug = group.slug
         return {
             'url': self.mocked_url,
             'slug': slug,
             'links': {
-                'pages': TEST_SERVER + build_url(reverse('pages:page-list'), {'slug': slug}),
+                'pages': build_url(
+                    reverse('pages:page-list', request=request),
+                    {'group': slug},
+                ),
             },
         }
 
@@ -91,5 +107,5 @@ class TestGroupView(APIRequestTestCase):
         response = view(request, slug=group.slug)
         self.assertEqual(response.status_code, 200)
 
-        expected = self.get_expected(group)
+        expected = self.get_expected(group, request)
         self.assertEqual(response.data, expected)

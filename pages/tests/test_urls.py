@@ -7,7 +7,7 @@ from .. import views
 class TestURLs(TestCase):
     """Ensure the pages urls work."""
     def test_page_detail_url(self):
-        url = reverse('pages:page-detail', kwargs={'pk': 1})
+        url = reverse('pages:page-detail', kwargs={'slug': 'slug'})
         view_name = resolve(url).func.__name__
         self.assertEqual(view_name, views.PageViewSet.__name__)
 
