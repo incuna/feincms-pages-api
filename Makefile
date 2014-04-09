@@ -10,5 +10,4 @@ test:
 	./pages/tests/run.py
 
 release:
-	python setup.py register sdist upload
-	python setup.py bdist_wheel upload
+	python setup.py register sdist bdist_wheel upload
