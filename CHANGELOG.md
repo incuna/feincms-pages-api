@@ -1,5 +1,9 @@
 # Changelog for feincms-pages-api
 
+## 0.1.1
+
+* Use feincms-extensions render_regions which passes the request through to render
+
 ## 0.1.0
 
 * Finish migrating changes from incuna internal pages app
