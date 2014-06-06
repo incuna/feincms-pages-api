@@ -15,5 +15,5 @@ Page.register_regions(
 )
 Page.create_content_type(RichTextContent)
 Page.register_extensions(
-    'pages.extensions.render_regions',
+    'feincms_extensions.render_regions',
 )

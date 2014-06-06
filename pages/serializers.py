@@ -7,12 +7,15 @@ from pages.utils import build_url
 
 class PageSerializer(serializers.HyperlinkedModelSerializer):
     name = serializers.CharField()
-    regions = serializers.Field(source='rendered_regions')
+    regions = serializers.SerializerMethodField('rendered_regions')
 
     class Meta:
         fields = ('id', 'url', 'name', 'slug', 'regions')
         model = models.Page
         view_name = 'pages:page-detail'
+
+    def rendered_regions(self, obj):
+        return obj.rendered_regions(self.context['request'])
 
 
 class GroupSerializer(mixins.LinksMixin, serializers.HyperlinkedModelSerializer):
