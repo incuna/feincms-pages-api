@@ -17,7 +17,7 @@ class PageSerializerTest(APIRequestTestCase):
             'url': page.get_absolute_url(self.request),
             'name': page.name,
             'slug': page.slug,
-            'regions': page.rendered_regions(),
+            'regions': page.rendered_regions(self.request),
         }
         return expected
 
