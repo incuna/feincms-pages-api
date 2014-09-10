@@ -26,6 +26,7 @@ settings.configure(
         'django.contrib.sessions',
         'django.contrib.admin',
     ),
+    MIDDLEWARE_CLASSES=(),
     PASSWORD_HASHERS = ('django.contrib.auth.hashers.MD5PasswordHasher',),
     SITE_ID = 1,
     AUTH_USER_MODEL='tests.User',
@@ -33,9 +34,13 @@ settings.configure(
 )
 
 
+import django
+try:
+    django.setup()
+except AttributeError:
+    pass  # Must be on django < 1.7
+
 from django.test.runner import DiscoverRunner
-
-
 test_runner = DiscoverRunner(verbosity=1)
 failures = test_runner.run_tests(['pages'])
 if failures:
