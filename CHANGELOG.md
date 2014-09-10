@@ -2,7 +2,7 @@
 
 ## future
 
-* Test against django `1.7`
+* Test against Django `1.7`
 * Allow up to FeinCMS `1.10`.
 
 ## 0.1.1
