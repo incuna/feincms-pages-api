@@ -1,5 +1,10 @@
 # Changelog for feincms-pages-api
 
+## future
+
+* Test against Django `1.7`
+* Allow up to FeinCMS `1.10`.
+
 ## 0.1.1
 
 * Use feincms-extensions render_regions which passes the request through to render

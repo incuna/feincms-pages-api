@@ -1,6 +1,7 @@
 from mock import patch, MagicMock
 
 from django.test import TestCase
+from incuna_test_utils.compat import wipe_id_fields_on_django_lt_17
 
 from .. import models
 from . import factories
@@ -73,12 +74,14 @@ class TestGroupModel(TestCase):
 
 class TestGroupItem(TestCase):
     def test_fields(self):
-        expected = {
+        expected = wipe_id_fields_on_django_lt_17({
             'id',
             'page',
+            'page_id',
             'group',
+            'group_id',
             'sort_order',
-        }
+        })
 
         fields = models.GroupItem._meta.get_all_field_names()
 
