@@ -1,6 +1,6 @@
 # Changelog for feincms-pages-api
 
-## future
+## 0.1.2
 
 * Test against Django `1.7`
 * Allow up to FeinCMS `1.10`.
