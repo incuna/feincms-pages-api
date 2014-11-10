@@ -2,12 +2,12 @@
 colour-runner==0.0.4
 coverage==3.7.1
 dj-database-url==0.3.0
-django-user-management==0.0.7
 django==1.7.1
 djangorestframework==2.4.4
+django-user-management==0.0.7
 factory-boy==2.4.1
-flake8-import-order==0.5.3
 flake8==2.2.5
+flake8-import-order==0.5.3
 incuna-test-utils==5.1.0
 mock==1.0.1
 psycopg2==2.5.4
