@@ -1,10 +1,9 @@
 from mock import patch
-
 from rest_framework.reverse import reverse
 from user_management.models.tests.utils import APIRequestTestCase
 
-from .. import views
-from . import factories
+from pages import views
+from pages.tests import factories
 from pages.tests.utils import TEST_SERVER
 from pages.utils import build_url
 

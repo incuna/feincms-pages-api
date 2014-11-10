@@ -2,15 +2,17 @@
 """From http://stackoverflow.com/a/12260597/400691"""
 import sys
 
-from django.conf import settings
-
 import dj_database_url
+import django
+from colour_runner.django_runner import ColourRunnerMixin
+from django.conf import settings
 
 
 settings.configure(
     DATABASES={
         'default': dj_database_url.config(default='postgres://localhost/pages'),
     },
+    DEFAULT_FILE_STORAGE='inmemorystorage.InMemoryStorage',
     INSTALLED_APPS=(
         'pages',
         'pages.tests',  # This adds the test User model.
@@ -23,7 +25,6 @@ settings.configure(
         # See: https://code.djangoproject.com/ticket/10827#comment:12
         'django.contrib.contenttypes',
         'django.contrib.auth',
-        'django.contrib.sessions',
         'django.contrib.admin',
     ),
     MIDDLEWARE_CLASSES=(),
@@ -34,14 +35,17 @@ settings.configure(
 )
 
 
-import django
-try:
-    django.setup()
-except AttributeError:
-    pass  # Must be on django < 1.7
-
 from django.test.runner import DiscoverRunner
-test_runner = DiscoverRunner(verbosity=1)
+
+
+if django.VERSION >= (1, 7):
+    django.setup()
+
+
+class TestRunner(ColourRunnerMixin, DiscoverRunner):
+    """Enable colorised output."""
+
+test_runner = TestRunner(verbosity=1)
 failures = test_runner.run_tests(['pages'])
 if failures:
     sys.exit(1)

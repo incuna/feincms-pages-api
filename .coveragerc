@@ -1,0 +1,5 @@
+[run]
+source = pages
+omit = *migrations*, *tests*
+[report]
+show_missing = True

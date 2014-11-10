@@ -7,7 +7,9 @@ help:
 	@echo " make release -- releases the library to internal pypi"
 
 test:
-	./pages/tests/run.py
+	@coverage run ./pages/tests/run.py
+	@coverage report
+	@flake8 .
 
 release:
 	python setup.py register sdist bdist_wheel upload

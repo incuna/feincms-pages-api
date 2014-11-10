@@ -1,12 +1,12 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
-from .. import views
+from pages import views
 
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(
         r'^group/(?P<slug>[a-z0-9-]+)/?',
         views.GroupView.as_view(),
         name='group-detail',
     ),
-)
+]

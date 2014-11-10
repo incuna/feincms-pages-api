@@ -1,5 +1,4 @@
 import mock
-
 from django.test import TestCase
 
 from ..fields import AbsoluteURLIdentityField
