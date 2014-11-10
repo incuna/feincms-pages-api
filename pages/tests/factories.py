@@ -1,22 +1,26 @@
-from .. import models
 import factory
+
+from .. import models
 
 
 class PageFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = models.Page
+    class Meta:
+        model = models.Page
 
     name = factory.Sequence(lambda n: 'Page {}'.format(n))
     slug = factory.Sequence(lambda n: 'page-{}'.format(n))
 
 
 class GroupFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = models.Group
+    class Meta:
+        model = models.Group
 
     slug = factory.Sequence(lambda n: 'group-{}'.format(n))
 
 
 class GroupItemFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = models.GroupItem
+    class Meta:
+        model = models.GroupItem
 
     page = factory.SubFactory(PageFactory)
     group = factory.SubFactory(GroupFactory)

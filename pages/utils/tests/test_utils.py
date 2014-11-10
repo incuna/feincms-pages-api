@@ -1,7 +1,7 @@
 from collections import OrderedDict
 from unittest import TestCase
 
-from .. import build_url
+from pages.utils import build_url
 
 
 class TestUtils(TestCase):

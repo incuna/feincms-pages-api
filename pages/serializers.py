@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.reverse import reverse
 
-from . import fields, mixins, models
+from pages import fields, mixins, models
 from pages.utils import build_url
 
 

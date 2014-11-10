@@ -3,5 +3,5 @@ class LinksMixin(object):
 
     def to_native(self, obj):
         fields = super(LinksMixin, self).to_native(obj)
-        fields['links'] = {key: fields.pop(key) for key in self.links_fields if key in fields}
+        fields['links'] = {k: fields.pop(k) for k in self.links_fields if k in fields}
         return fields

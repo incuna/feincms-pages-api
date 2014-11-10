@@ -1,8 +1,8 @@
 from rest_framework.reverse import reverse
 from user_management.models.tests.utils import APIRequestTestCase
 
-from .. import serializers
-from . import factories
+from pages import serializers
+from pages.tests import factories
 from pages.utils import build_url
 
 

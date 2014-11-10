@@ -1,10 +1,9 @@
-from mock import patch, MagicMock
-
 from django.test import TestCase
 from incuna_test_utils.compat import wipe_id_fields_on_django_lt_17
+from mock import MagicMock, patch
 
-from .. import models
 from . import factories
+from .. import models
 
 
 class TestPageModel(TestCase):

@@ -1,0 +1,3 @@
+[run]
+source = pages
+omit = *migrations*, *tests*
