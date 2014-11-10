@@ -8,7 +8,7 @@ help:
 
 test:
 	@coverage run ./pages/tests/run.py
-	@coverage report --show-missing
+	@coverage report
 	@flake8 .
 
 release:
