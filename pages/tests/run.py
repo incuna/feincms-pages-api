@@ -28,18 +28,19 @@ settings.configure(
         'django.contrib.admin',
     ),
     MIDDLEWARE_CLASSES=(),
-    PASSWORD_HASHERS = ('django.contrib.auth.hashers.MD5PasswordHasher',),
-    SITE_ID = 1,
+    PASSWORD_HASHERS=('django.contrib.auth.hashers.MD5PasswordHasher',),
+    SITE_ID=1,
     AUTH_USER_MODEL='tests.User',
     ROOT_URLCONF='pages.tests.urls',
 )
 
 
-from django.test.runner import DiscoverRunner
-
-
 if django.VERSION >= (1, 7):
     django.setup()
+
+
+# DiscoverRunner requires `django.setup()` to have been called
+from django.test.runner import DiscoverRunner  # noqa
 
 
 class TestRunner(ColourRunnerMixin, DiscoverRunner):
