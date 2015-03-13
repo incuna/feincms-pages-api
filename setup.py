@@ -7,7 +7,7 @@ version = '0.1.2'
 install_requires = (
     'djangorestframework>=2.3.10,<3',
     'FeinCMS>=1.9,<1.11',
-    'django-orderable>=2.0.1,<3',
+    'django-orderable>=2.0.1,<4',
     'feincms-extensions>=0.1.0,<1',
 )
 
