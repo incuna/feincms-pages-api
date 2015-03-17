@@ -15,3 +15,12 @@ install:
   - psql -c 'CREATE DATABASE pages' -U postgres
   - pip install -r test_requirements.txt
   - pip install $DJANGO
+deploy:
+  provider: pypi
+  user: incuna
+  on:
+    condition: $DJANGO='django>=1.7,<1.8'
+    tags: true
+  password:
+    secure: CVAsIX0E/LD7xUHe0mgxYrfhIM+LDvOk2xMBfrqxiNPyYk/12XLTyqmQx5y//11bUff5XN9LKmwG1EEo2bzoaFTX4owpz4hdS3Scq8DTa4UPkV+t0LaY6fFc+sztyF4EnH+/sEn1873s5pOhJQFRDcLUOn/i1EkMwY9QpVgwQUw=
+ distributions: sdist bdist_wheel
