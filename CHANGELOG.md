@@ -1,5 +1,9 @@
 # Changelog for feincms-pages-api
 
+## 0.2.0 (Upcoming)
+
+* Support rendering `Page` content types as `json`.
+
 ## 0.1.3
 
 * Support `django-orderable` version `3`.

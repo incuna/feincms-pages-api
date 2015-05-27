@@ -26,6 +26,14 @@ class PageSerializerTest(APIRequestTestCase):
         serializer = serializers.PageSerializer(page, context=self.context)
         self.assertEqual(serializer.data, self.expected_data(page))
 
+    def test_serialize_to_json(self):
+        page = factories.PageFactory.create()
+        serializer = serializers.JsonPageSerializer(page, context=self.context)
+
+        expected_data = self.expected_data(page)
+        expected_data['regions'] = {'abstract': [], 'body': []}
+        self.assertEqual(serializer.data, expected_data)
+
 
 class GroupTest(APIRequestTestCase):
     def setUp(self):

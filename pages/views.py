@@ -7,8 +7,14 @@ from . import models, serializers
 class PageViewSet(viewsets.ReadOnlyModelViewSet):
     lookup_field = 'slug'
     model = models.Page
-    serializer_class = serializers.PageSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_serializer_class(self):
+        """Get the appropriate serializer using the regions_format."""
+        regions_format = self.request.QUERY_PARAMS.get('regions_format')
+        if regions_format == 'json':
+            return serializers.JsonPageSerializer
+        return serializers.PageSerializer
 
     def get_queryset(self):
         queryset = super(PageViewSet, self).get_queryset()

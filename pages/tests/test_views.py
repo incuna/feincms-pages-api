@@ -26,7 +26,7 @@ class TestPageViewSet(APIRequestTestCase):
     def test_get_detail(self):
         """Test GET Page detail."""
         page = factories.PageFactory.create()
-        page.richtextcontent_set.create(region='body', text='Wow!')
+        page.jsonrichtextcontent_set.create(region='body', text='Wow!')
 
         request = self.create_request()
         view = self.view_class.as_view({'get': 'retrieve'})
@@ -39,7 +39,7 @@ class TestPageViewSet(APIRequestTestCase):
     def test_get_list(self):
         """Test GET Page list."""
         page = factories.PageFactory.create()
-        page.richtextcontent_set.create(region='body', text='Wow!')
+        page.jsonrichtextcontent_set.create(region='body', text='Wow!')
 
         request = self.create_request()
         response = self.view_class.as_view({'get': 'list'})(request)
@@ -66,7 +66,7 @@ class TestPageViewSet(APIRequestTestCase):
     def test_get_detail_anonymous(self):
         """Test GET Page detail unauthenticated."""
         page = factories.PageFactory.create()
-        page.richtextcontent_set.create(region='body', text='Wow!')
+        page.jsonrichtextcontent_set.create(region='body', text='Wow!')
 
         request = self.create_request(auth=False)
         view = self.view_class.as_view({'get': 'retrieve'})
@@ -74,6 +74,24 @@ class TestPageViewSet(APIRequestTestCase):
         self.assertEqual(response.status_code, 200)
 
         expected = self.get_expected(page)
+        self.assertEqual(response.data, expected)
+
+    def test_get_detail_json_regions(self):
+        """A Page's regions can be retrieved as json."""
+        page = factories.PageFactory.create()
+        text = 'Wow!'
+        body_text = page.jsonrichtextcontent_set.create(region='body', text=text)
+
+        request = self.create_request(data={'regions_format': 'json'})
+        view = self.view_class.as_view({'get': 'retrieve'})
+        response = view(request, slug=page.slug)
+        self.assertEqual(response.status_code, 200)
+
+        expected = self.get_expected(page)
+        expected['regions'] = {
+            'abstract': [],
+            'body': [{'html': text, 'content_type': 'rich-text', 'id': body_text.id}],
+        }
         self.assertEqual(response.data, expected)
 
 
