@@ -6,7 +6,7 @@ from . import models, serializers
 
 class PageViewSet(viewsets.ReadOnlyModelViewSet):
     lookup_field = 'slug'
-    model = models.Page
+    queryset = models.Page.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_serializer_class(self):
@@ -28,5 +28,5 @@ class PageViewSet(viewsets.ReadOnlyModelViewSet):
 
 class GroupView(generics.RetrieveAPIView):
     lookup_field = 'slug'
-    model = models.Group
+    queryset = models.Group.objects.all()
     serializer_class = serializers.GroupSerializer

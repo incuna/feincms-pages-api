@@ -2,8 +2,7 @@
 colour-runner==0.0.4
 coverage==3.7.1
 dj-database-url==0.3.0
-django==1.7.6
-djangorestframework==2.4.4
+django==1.7.7
 django-user-management==7.0.1
 factory-boy==2.4.1
 flake8==2.3.0

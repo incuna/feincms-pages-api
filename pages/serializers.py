@@ -13,6 +13,9 @@ class PageSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'url', 'name', 'slug', 'regions')
         model = models.Page
         view_name = 'pages:page-detail'
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'},
+        }
 
     def rendered_regions(self, obj):
         return obj.rendered_regions(self.context['request'])
