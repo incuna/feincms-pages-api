@@ -1,5 +1,10 @@
 # Changelog for feincms-pages-api
 
+## 1.0.0 (Upcoming)
+
+* Add django-rest-framework v3 support.
+* Remove django-rest-framework v2 support.
+
 ## 0.1.3
 
 * Support `django-orderable` version `3`.
