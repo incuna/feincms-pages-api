@@ -1,6 +1,6 @@
 # Changelog for feincms-pages-api
 
-## 1.1.0 (Upcoming)
+## 1.1.0
 
 * Support rendering `Page` content types as `json`. (Merge `0.2.0`)
 
