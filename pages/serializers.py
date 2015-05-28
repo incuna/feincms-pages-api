@@ -21,6 +21,12 @@ class PageSerializer(serializers.HyperlinkedModelSerializer):
         return obj.rendered_regions(self.context['request'])
 
 
+class JsonPageSerializer(PageSerializer):
+    def rendered_regions(self, obj):
+        """Render regions as a json-serializable dictionary."""
+        return obj.render_json(self.context.get('request'))
+
+
 class GroupSerializer(mixins.LinksMixin, serializers.HyperlinkedModelSerializer):
     url = fields.AbsoluteURLIdentityField()
     pages = serializers.SerializerMethodField('get_pages_link')

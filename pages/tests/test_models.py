@@ -13,7 +13,7 @@ class TestPageModel(TestCase):
             'name',
             'slug',
             'groupitem',
-            'richtextcontent_set',
+            'jsonrichtextcontent_set',
         }
 
         fields = models.Page._meta.get_all_field_names()
