@@ -55,7 +55,7 @@ class TestPageViewSet(APIRequestTestCase):
         factories.GroupItemFactory.create(page=page, group=group)
 
         request = self.create_request()
-        request.QUERY_PARAMS = {'group': group.slug}
+        request.query_params = {'group': group.slug}
         view = self.view_class()
         view.request = request
         queryset = view.get_queryset()
