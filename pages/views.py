@@ -11,14 +11,14 @@ class PageViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_serializer_class(self):
         """Get the appropriate serializer using the regions_format."""
-        regions_format = self.request.QUERY_PARAMS.get('regions_format')
+        regions_format = self.request.query_params.get('regions_format')
         if regions_format == 'json':
             return serializers.JsonPageSerializer
         return serializers.PageSerializer
 
     def get_queryset(self):
         queryset = super(PageViewSet, self).get_queryset()
-        group_slug = self.request.QUERY_PARAMS.get('group')
+        group_slug = self.request.query_params.get('group')
 
         if group_slug is None:
             return queryset
