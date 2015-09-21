@@ -1,5 +1,13 @@
 # Changelog for feincms-pages-api
 
+## 1.2.0 (upcoming)
+
+* Add `djangorestframework` v3.2 support
+
+Notes:
+* `request.QUERY_PARAMS` has been deprecated for `request.query_params`
+* add `view_name` to `extra_kwargs['url']`
+
 ## 1.1.0
 
 * Support rendering `Page` content types as `json`. (Merge `0.2.0`)
