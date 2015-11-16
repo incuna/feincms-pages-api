@@ -1,5 +1,9 @@
 # Changelog for feincms-pages-api
 
+## 1.3.0 (Upcoming)
+
+* Add `djangorestframework` v3.3 support
+
 ## 1.2.0
 
 * Add `djangorestframework` v3.2 support
