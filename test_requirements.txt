@@ -5,7 +5,7 @@ dj-database-url==0.3.0
 django==1.7.7
 django-user-management==7.0.1
 factory-boy==2.4.1
-flake8==2.3.0
+flake8==2.5.0
 flake8-import-order==0.5.3
 incuna-test-utils==6.0.0
 mock==1.0.1
