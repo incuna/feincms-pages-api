@@ -12,7 +12,6 @@ class PageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         fields = ('id', 'url', 'name', 'slug', 'regions')
         model = models.Page
-        view_name = 'pages:page-detail'
         extra_kwargs = {
             'url': {'lookup_field': 'slug', 'view_name': 'pages:page-detail'},
         }
