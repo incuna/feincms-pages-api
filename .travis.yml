@@ -1,7 +1,8 @@
 language: python
 python:
   - 2.7
-  - 3.3
+  - 3.4
+  - 3.5
 script: make test
 notifications:
   email: false
@@ -9,8 +10,12 @@ env:
   global:
     - DATABASE_URL='postgres://postgres@localhost/pages'
   matrix:
-    - DJANGO='django>=1.6,<1.7'
-    - DJANGO='django>=1.7,<1.8'
+    - DJANGO='django~=1.7.0'
+    - DJANGO='django~=1.8.0'
+matrix:
+  exclude:
+    - python: 3.5
+      env: DJANGO='django~=1.7.0'
 install:
   - psql -c 'CREATE DATABASE pages' -U postgres
   - pip install -r test_requirements.txt
