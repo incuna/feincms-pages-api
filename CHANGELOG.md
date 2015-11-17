@@ -1,8 +1,10 @@
 # Changelog for feincms-pages-api
 
-## 1.3.0 (Upcoming)
+## 1.3.0
 
 * Add `djangorestframework` v3.3 support
+* Add support for Django 1.8.
+* Drop support for Django 1.6.
 
 ## 1.2.0
 
