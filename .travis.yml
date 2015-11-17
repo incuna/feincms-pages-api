@@ -12,6 +12,10 @@ env:
   matrix:
     - DJANGO='django~=1.7.0'
     - DJANGO='django~=1.8.0'
+matrix:
+  exclude:
+    - python: 3.5
+      env: DJANGO='django~=1.7.0'
 install:
   - psql -c 'CREATE DATABASE pages' -U postgres
   - pip install -r test_requirements.txt
