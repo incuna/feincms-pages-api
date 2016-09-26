@@ -1,5 +1,5 @@
-import mock
 from django.test import TestCase
+import mock
 
 from ..fields import AbsoluteURLIdentityField
 
