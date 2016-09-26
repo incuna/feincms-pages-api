@@ -32,7 +32,7 @@ settings.configure(
     SITE_ID=1,
     AUTH_USER_MODEL='tests.User',
     ROOT_URLCONF='pages.tests.urls',
-    MIGRATION_MODULES = {
+    MIGRATION_MODULES={
         'api': 'pages.tests.testmigrations.api',
         'pages': 'pages.tests.testmigrations.pages',
         'feincms': 'pages.tests.testmigrations.feincms',
