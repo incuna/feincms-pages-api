@@ -2,9 +2,9 @@
 """From http://stackoverflow.com/a/12260597/400691"""
 import sys
 
+from colour_runner.django_runner import ColourRunnerMixin
 import dj_database_url
 import django
-from colour_runner.django_runner import ColourRunnerMixin
 from django.conf import settings
 
 
@@ -32,7 +32,7 @@ settings.configure(
     SITE_ID=1,
     AUTH_USER_MODEL='tests.User',
     ROOT_URLCONF='pages.tests.urls',
-    MIGRATION_MODULES = {
+    MIGRATION_MODULES={
         'api': 'pages.tests.testmigrations.api',
         'pages': 'pages.tests.testmigrations.pages',
         'feincms': 'pages.tests.testmigrations.feincms',
