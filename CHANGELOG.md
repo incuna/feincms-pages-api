@@ -2,16 +2,7 @@
 
 # Upcoming
 
-* Update test_requirements:
-    coverage
-    dj-database-url
-    django 1.8.6
-    factory-boy
-    flake8
-    flake8-import-order
-    incuna-test-utils
-    mock
-    psycopg2
+* Update test_requirements
 
 ## 1.3.0
 
